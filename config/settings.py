@@ -6,7 +6,7 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", "dev-only-change-this-secret-key-lapak-warga")
-DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1")
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "*",
