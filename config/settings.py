@@ -1,17 +1,18 @@
 import os
+import shutil
 from pathlib import Path
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", "dev-only-change-this-secret-key-lapak-warga")
-DEBUG = os.getenv("DEBUG", "True" if not os.getenv("VERCEL") else "False").lower() in ("true", "1")
+DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1")
 
 ALLOWED_HOSTS = [
+    "*",
     "localhost",
     "127.0.0.1",
     ".vercel.app",
-    "*.vercel.app",
 ]
 env_hosts = os.getenv("ALLOWED_HOSTS")
 if env_hosts:
@@ -20,6 +21,7 @@ if env_hosts:
 CSRF_TRUSTED_ORIGINS = [
     "https://*.vercel.app",
     "https://*.now.sh",
+    "https://lapak-warga-roan.vercel.app",
     "http://127.0.0.1",
     "http://localhost",
 ]
@@ -87,10 +89,24 @@ elif os.getenv("DB_ENGINE", "").lower() == "mysql":
         }
     }
 else:
+    # SQLite configuration (dengan penanganan khusus environment read-only Vercel)
+    sqlite_path = BASE_DIR / "db.sqlite3"
+    if os.getenv("VERCEL"):
+        # Vercel serverless functions bersifat read-only.
+        # Salin file db.sqlite3 ke /tmp agar dapat dibaca dan ditulisi (read-write) secara normal.
+        tmp_db = Path("/tmp/db.sqlite3")
+        if not tmp_db.exists() and sqlite_path.exists():
+            try:
+                shutil.copy2(sqlite_path, tmp_db)
+            except Exception:
+                pass
+        if tmp_db.exists():
+            sqlite_path = tmp_db
+
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            "NAME": sqlite_path,
         }
     }
 
