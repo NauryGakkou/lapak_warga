@@ -1,0 +1,1142 @@
+[
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$vIp1lGvIaicI8pa6h82q0p$gEOahhwW0S2z7VncciYaiwE4szwfDP4/O08mSWd2EEo=",
+    "last_login": "2026-11-23T09:21:44.838Z",
+    "is_superuser": true,
+    "username": "zefhan27",
+    "first_name": "",
+    "last_name": "",
+    "email": "zefhan2709@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2026-11-02T14:21:10.484Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$o2hrs8o504JGlyl7Ipal5r$KDkD4IozkHizDTUTmsSFPors/R8Tz0c+2mFZiqilbyA=",
+    "last_login": "2026-11-02T15:18:44.470Z",
+    "is_superuser": false,
+    "username": "cecha22",
+    "first_name": "cecha",
+    "last_name": "",
+    "email": "cechaa222@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-02T15:18:42.421Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$t64SnVI0KaCVcdQq5m08GP$yO9qeGDnwsOgdPVs3PDhwU5Rw4iFn4kOEMI8/fPzHUE=",
+    "last_login": "2026-11-02T20:46:57.585Z",
+    "is_superuser": false,
+    "username": "cici77",
+    "first_name": "cici",
+    "last_name": "",
+    "email": "cici22@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-02T17:08:57.151Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$XWU5pELlBj4J29s3MiJQEr$pbiZaJX55XCWw4ws0pjpYh6N5PgXUj5EWt9sD/4WePI=",
+    "last_login": "2026-11-02T20:45:47.214Z",
+    "is_superuser": false,
+    "username": "fufufafa",
+    "first_name": "fufu",
+    "last_name": "",
+    "email": "fufufafa02@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-02T20:45:45.037Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$7YK3YWQYcGtgnljG4H5sF9$ZqE95zXMuWJ8eP38Q8gmkJBusghM0OfnHaxX821oNbg=",
+    "last_login": "2026-11-10T02:04:18.630Z",
+    "is_superuser": false,
+    "username": "gibran12",
+    "first_name": "gibran",
+    "last_name": "",
+    "email": "gibran55@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-10T02:04:17.075Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$fHpE8SxMEPLrHucCcSMNI7$3KCOVSfclhgtGNAbcPcMOIWxydGtEBOPoKrEerJwkkw=",
+    "last_login": "2026-11-23T09:15:51.185Z",
+    "is_superuser": false,
+    "username": "pergijauh1",
+    "first_name": "gofar",
+    "last_name": "",
+    "email": "gofarhilman@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-11-23T09:15:49.015Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "8ee0kibnr4zkja2kw6hyo4dkad6exusw",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2pDCAGVcuvcMZGBAqoYmpV0Z765NutDtf-_9lwi0rTVsPS9hYnEWSpx-t0jpkdsO-E7tNss0t3WZotwVedAurzPn5-Vw_w4q9fqti2WIbDEhG3AmDr54C-AcRA0IsehRabZKj-SdB0Qilc1ASWvlkkLx_gDL1zbk:1xVQF6:B-e1Ls3yWwPxky4n56aOgLx7vM73Rcdg9qn5sjBvqus",
+    "expire_date": "2026-12-07T09:21:44.844Z"
+  }
+},
+{
+  "model": "marketplace.category",
+  "pk": 1,
+  "fields": {
+    "name": "Makanan & Sembako",
+    "slug": "makanan-sembako"
+  }
+},
+{
+  "model": "marketplace.category",
+  "pk": 2,
+  "fields": {
+    "name": "kendaraan",
+    "slug": "kendaraan"
+  }
+},
+{
+  "model": "marketplace.category",
+  "pk": 3,
+  "fields": {
+    "name": "Elektronik",
+    "slug": "elektronik"
+  }
+},
+{
+  "model": "marketplace.category",
+  "pk": 4,
+  "fields": {
+    "name": "Pakaian",
+    "slug": "pakaian"
+  }
+},
+{
+  "model": "marketplace.category",
+  "pk": 5,
+  "fields": {
+    "name": "Hewan Peliharaan",
+    "slug": "hewan-peliharaan"
+  }
+},
+{
+  "model": "marketplace.category",
+  "pk": 6,
+  "fields": {
+    "name": "Sparepart Kendaraan",
+    "slug": "sparepart-kendaraan"
+  }
+},
+{
+  "model": "marketplace.category",
+  "pk": 7,
+  "fields": {
+    "name": "Furniture",
+    "slug": "furniture"
+  }
+},
+{
+  "model": "marketplace.category",
+  "pk": 8,
+  "fields": {
+    "name": "Barang Antik",
+    "slug": "barang-antik"
+  }
+},
+{
+  "model": "marketplace.category",
+  "pk": 9,
+  "fields": {
+    "name": "Alas Kaki",
+    "slug": "alas-kaki"
+  }
+},
+{
+  "model": "marketplace.category",
+  "pk": 10,
+  "fields": {
+    "name": "Alat Berkebun",
+    "slug": "alat-berkebun"
+  }
+},
+{
+  "model": "marketplace.category",
+  "pk": 11,
+  "fields": {
+    "name": "perabotan",
+    "slug": "perabotan"
+  }
+},
+{
+  "model": "marketplace.category",
+  "pk": 12,
+  "fields": {
+    "name": "Properti",
+    "slug": "properti"
+  }
+},
+{
+  "model": "marketplace.category",
+  "pk": 13,
+  "fields": {
+    "name": "Alat Musik",
+    "slug": "alat-musik"
+  }
+},
+{
+  "model": "marketplace.category",
+  "pk": 14,
+  "fields": {
+    "name": "perkakas",
+    "slug": "perkakas"
+  }
+},
+{
+  "model": "marketplace.product",
+  "pk": 1,
+  "fields": {
+    "seller": [
+      "cici77"
+    ],
+    "category": 1,
+    "name": "Beras Premium 5 Kg",
+    "slug": "beras-premium-5-kg",
+    "description": "Beras premium berkualitas, bersih, dan pulen untuk kebutuhan sehari-hari.",
+    "price": "75000.00",
+    "stock": 20,
+    "image": "products/701958EB-E7FE-48E6-A366-67343774C717.png",
+    "is_active": true,
+    "created_at": "2026-11-02T18:15:01.101Z"
+  }
+},
+{
+  "model": "marketplace.product",
+  "pk": 2,
+  "fields": {
+    "seller": [
+      "zefhan27"
+    ],
+    "category": 2,
+    "name": "Kawasaki w175",
+    "slug": "kawasaki-w175",
+    "description": "Sepeda motor Kawasaki w175 keluaran 2019, bermodelkan retro klasik,\r\nsurat lengkap hidup.",
+    "price": "35000000.00",
+    "stock": 1,
+    "image": "products/1CB30354-7E86-4BB2-8D98-C841239D4598.png",
+    "is_active": true,
+    "created_at": "2026-11-02T18:27:43.087Z"
+  }
+},
+{
+  "model": "marketplace.product",
+  "pk": 3,
+  "fields": {
+    "seller": [
+      "zefhan27"
+    ],
+    "category": 2,
+    "name": "Toyota Great corolla",
+    "slug": "toyota_great_corolla",
+    "description": "Great corolla tahun 1995\r\n1.ac dingin.\r\n2.kaki kaki aman\r\n3.surat lengkap pajak mati",
+    "price": "45000000.00",
+    "stock": 1,
+    "image": "products/F29CF861-EF4D-41BB-9589-508FD95E4F88.png",
+    "is_active": true,
+    "created_at": "2026-11-02T18:31:30.033Z"
+  }
+},
+{
+  "model": "marketplace.product",
+  "pk": 4,
+  "fields": {
+    "seller": [
+      "cici77"
+    ],
+    "category": 4,
+    "name": "celana denim",
+    "slug": "celana-denim",
+    "description": "barang baru,belum pernah dipakai",
+    "price": "35000000.00",
+    "stock": 1,
+    "image": "products/833426D7-2683-4F18-ADE2-C3B7E0F88CCE.png",
+    "is_active": true,
+    "created_at": "2026-11-02T18:36:30.212Z"
+  }
+},
+{
+  "model": "marketplace.product",
+  "pk": 5,
+  "fields": {
+    "seller": [
+      "cici77"
+    ],
+    "category": 3,
+    "name": "smart tv LG",
+    "slug": "smart-tv",
+    "description": "Smart tv led LG 32 inch\r\nbarang baru belum pernah dipakai",
+    "price": "3500000.00",
+    "stock": 1,
+    "image": "products/57223060-A9F1-481A-A9D4-38E9AAA5FBAF.png",
+    "is_active": true,
+    "created_at": "2026-11-02T18:41:08.509Z"
+  }
+},
+{
+  "model": "marketplace.product",
+  "pk": 6,
+  "fields": {
+    "seller": [
+      "zefhan27"
+    ],
+    "category": 3,
+    "name": "Kipas Angin",
+    "slug": "kipas-angin",
+    "description": "Kipas angin merek  maspion\r\npemakaian baru 2 minggu",
+    "price": "1000000.00",
+    "stock": 1,
+    "image": "products/15806E0A-A0DC-4197-830F-10E2B1CDD6C0.png",
+    "is_active": true,
+    "created_at": "2026-11-02T18:43:15.929Z"
+  }
+},
+{
+  "model": "marketplace.product",
+  "pk": 7,
+  "fields": {
+    "seller": [
+      "cici77"
+    ],
+    "category": 4,
+    "name": "Hoodie H&M",
+    "slug": "hoodie-hnm",
+    "description": "loose fit hoodie H&M size M,pemakaian satu bulan",
+    "price": "450000.00",
+    "stock": 1,
+    "image": "products/39E39BDC-08DA-48CE-BF8F-6CBAC4934E0B.png",
+    "is_active": true,
+    "created_at": "2026-11-02T18:49:13.405Z"
+  }
+},
+{
+  "model": "marketplace.product",
+  "pk": 8,
+  "fields": {
+    "seller": [
+      "zefhan27"
+    ],
+    "category": 5,
+    "name": "Ayam Bangkok",
+    "slug": "ayam-bangkok",
+    "description": "umur 1 tahun,sudah juara 3 kali",
+    "price": "3000000.00",
+    "stock": 1,
+    "image": "products/39598A12-FF5E-419F-9289-796D9DC3759C.png",
+    "is_active": true,
+    "created_at": "2026-11-02T18:58:20.623Z"
+  }
+},
+{
+  "model": "marketplace.product",
+  "pk": 9,
+  "fields": {
+    "seller": [
+      "zefhan27"
+    ],
+    "category": 6,
+    "name": "Karbu PE 24",
+    "slug": "karbu-pe",
+    "description": "baru bukan bekas",
+    "price": "350000.00",
+    "stock": 0,
+    "image": "products/61A585F9-A871-4B82-B3AC-92FE2CDDF11B.png",
+    "is_active": true,
+    "created_at": "2026-11-02T19:02:15.816Z"
+  }
+},
+{
+  "model": "marketplace.product",
+  "pk": 10,
+  "fields": {
+    "seller": [
+      "cici77"
+    ],
+    "category": 7,
+    "name": "Sofa Set",
+    "slug": "sofa-set",
+    "description": "satu rangkaian kursi sofa yang dirancang dengan desain, material, dan warna yang serasi untuk mengisi ruang tamu atau ruang keluarga. Alih-alih membeli kursi secara terpisah, sofa set memberikan keselarasan estetika instan karena seluruh unitnya memiliki tema visual yang seragam.",
+    "price": "5000000.00",
+    "stock": 1,
+    "image": "products/7940FC9A-0969-4B70-9B57-A2CC564FBD92.png",
+    "is_active": true,
+    "created_at": "2026-11-02T19:07:01.216Z"
+  }
+},
+{
+  "model": "marketplace.product",
+  "pk": 11,
+  "fields": {
+    "seller": [
+      "zefhan27"
+    ],
+    "category": 8,
+    "name": "Teko Antik",
+    "slug": "teko-antik",
+    "description": "Teko Antik peninggalan kerajaan cina yaitu dinasti ming",
+    "price": "35000000.00",
+    "stock": 0,
+    "image": "products/CE90B8E1-5126-4CD6-8F56-225818267358.png",
+    "is_active": true,
+    "created_at": "2026-11-02T19:09:24.397Z"
+  }
+},
+{
+  "model": "marketplace.product",
+  "pk": 12,
+  "fields": {
+    "seller": [
+      "zefhan27"
+    ],
+    "category": 9,
+    "name": "Sepatu Docmart",
+    "slug": "sepatu-docmart",
+    "description": "",
+    "price": "1200000.00",
+    "stock": 0,
+    "image": "products/E25AD01E-1788-40CD-978D-F9A77DB525B7.png",
+    "is_active": true,
+    "created_at": "2026-11-02T19:12:17.645Z"
+  }
+},
+{
+  "model": "marketplace.cart",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "cecha22"
+    ],
+    "updated_at": "2026-11-02T15:18:44.479Z"
+  }
+},
+{
+  "model": "marketplace.cart",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "cici77"
+    ],
+    "updated_at": "2026-11-02T17:08:58.170Z"
+  }
+},
+{
+  "model": "marketplace.cart",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "fufufafa"
+    ],
+    "updated_at": "2026-11-02T20:45:47.223Z"
+  }
+},
+{
+  "model": "marketplace.cart",
+  "pk": 4,
+  "fields": {
+    "user": [
+      "gibran12"
+    ],
+    "updated_at": "2026-11-10T02:04:18.662Z"
+  }
+},
+{
+  "model": "marketplace.cart",
+  "pk": 5,
+  "fields": {
+    "user": [
+      "zefhan27"
+    ],
+    "updated_at": "2026-11-21T06:32:06.095Z"
+  }
+},
+{
+  "model": "marketplace.cart",
+  "pk": 6,
+  "fields": {
+    "user": [
+      "pergijauh1"
+    ],
+    "updated_at": "2026-11-23T09:15:51.223Z"
+  }
+},
+{
+  "model": "marketplace.order",
+  "pk": 1,
+  "fields": {
+    "user": [
+      "zefhan27"
+    ],
+    "full_name": "Wowo",
+    "phone": "087381111222",
+    "shipping_address": "JL.JL.diPantaiLOSARI",
+    "payment_method": "qris",
+    "total": "35000000.00",
+    "status": "pending",
+    "payment_proof": "",
+    "paid_at": null,
+    "created_at": "2026-11-21T06:41:00.754Z"
+  }
+},
+{
+  "model": "marketplace.order",
+  "pk": 2,
+  "fields": {
+    "user": [
+      "zefhan27"
+    ],
+    "full_name": "Rocky gerung",
+    "phone": "0981122334",
+    "shipping_address": "JL.CENDANA",
+    "payment_method": "qris",
+    "total": "1200000.00",
+    "status": "paid",
+    "payment_proof": "",
+    "paid_at": "2026-11-23T09:13:17.558Z",
+    "created_at": "2026-11-23T09:13:04.401Z"
+  }
+},
+{
+  "model": "marketplace.order",
+  "pk": 3,
+  "fields": {
+    "user": [
+      "pergijauh1"
+    ],
+    "full_name": "Gofar",
+    "phone": "123334444",
+    "shipping_address": "JL.TENDEAN",
+    "payment_method": "cod",
+    "total": "350000.00",
+    "status": "paid",
+    "payment_proof": "",
+    "paid_at": "2026-11-23T09:17:11.358Z",
+    "created_at": "2026-11-23T09:16:56.840Z"
+  }
+},
+{
+  "model": "marketplace.orderitem",
+  "pk": 1,
+  "fields": {
+    "order": 1,
+    "product": 11,
+    "product_name": "Teko Antik",
+    "price": "35000000.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "marketplace.orderitem",
+  "pk": 2,
+  "fields": {
+    "order": 2,
+    "product": 12,
+    "product_name": "Sepatu Docmart",
+    "price": "1200000.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "marketplace.orderitem",
+  "pk": 3,
+  "fields": {
+    "order": 3,
+    "product": 9,
+    "product_name": "Karbu PE 24",
+    "price": "350000.00",
+    "quantity": 1
+  }
+},
+{
+  "model": "marketplace.article",
+  "pk": 1,
+  "fields": {
+    "author": [
+      "zefhan27"
+    ],
+    "title": "Lapakwarga Terbentuk Dari Warga",
+    "slug": "lapakwarga-terbentuk-dari-warga",
+    "excerpt": "Alasan dari terbentuknya Lapakwarga",
+    "content": "warga warga",
+    "thumbnail": "articles/97CA0E3E-9231-4ED5-9656-70A45853B01E.png",
+    "is_published": true,
+    "created_at": "2026-11-21T06:30:59.832Z",
+    "updated_at": "2026-11-21T06:30:59.832Z"
+  }
+},
+{
+  "model": "marketplace.article",
+  "pk": 2,
+  "fields": {
+    "author": [
+      "zefhan27"
+    ],
+    "title": "Waspada!! ini Cara Menghindari Penipuan Di Marketplace",
+    "slug": "waspada-ini-cara-menghindari-penipuan-di-marketplace",
+    "excerpt": "Penipuan di marketplace terjadi ketika pelaku memanipulasi transaksi jual beli—baik sebagai pembeli maupun penjual—untuk mencuri uang, barang, data pribadi, atau mengambil alih akun.",
+    "content": "Cara Mencegah\r\n\r\n• Utamakan transaksi resmi di dalam platform atau COD di tempat ramai dan aman.\r\n• Cek saldo asli di aplikasi bank/e-wallet secara langsung—jangan mengandalkan bukti transfer dari lawan bicara.\r\n• Hindari pembayaran via voucher digital atau transfer di luar jalur aman.\r\n• Jangan klik tautan mencurigakan dan jangan pernah membagikan kode OTP atau kata sandi.",
+    "thumbnail": "articles/B4512950-D461-4509-9525-20EE0A10A451.png",
+    "is_published": true,
+    "created_at": "2026-11-21T06:38:06.877Z",
+    "updated_at": "2026-11-21T06:38:06.877Z"
+  }
+},
+{
+  "model": "marketplace.article",
+  "pk": 3,
+  "fields": {
+    "author": [
+      "zefhan27"
+    ],
+    "title": "Gofar Hilman,Diisukan menjadi Pengganti Wapres Gibran",
+    "slug": "gofar-hilmandiisukan-menjadi-pengganti-wapres-gibran",
+    "excerpt": "Abdul Gofar Hilman (lahir 26 April 1983) merupakan seorang penyiar radio, YouTuber, aktor, pembawa acara, komedian, model, dan pengusaha asal Indonesia. Ia dikenal sebagai penyiar radio Hard Rock FM sejak tahun 2012 hingga 2021.",
+    "content": "Gofar lahir dan besar di daerah Setiabudi, Jakarta Selatan. Ia lahir pada 26 April 1983 dengan nama Raskal Hilman yang merupakan pemberian ayahnya. Ibunya merupakan seorang pedagang baju bekas di daerah Senen. Ketika usia tiga tahun, kakeknya yang merupakan pendiri pesantren mengubah namanya menjadi Abdul Gofar Hilman.\r\n\r\nMenjadi penyiar radio merupakan cita-cita Gofar dari kecil. Ketertarikan itu berawal dari kesukaannya mendengar radio Suara Kejayaan.\r\n\r\nSaat kelas lima sekolah dasar pada tahun 1994, Gofar pertama kali mengenal punk dari teman-temannya yang kerap memperdengarkan musik punk. Saat SMP ia membentuk sebuah grup musik beraliran punk bernama Social Distrust.\r\n\r\nGofar merupakan alumni SMAN 3 Setiabudi Jakarta. Lulus SMA pada 2001, Gofar tak melanjutkan pendidikannya karena faktor ekonomi. Saat itu ia berjualan kaset, kaus, ikat pinggang dan jaket bernuansa punk hingga tahun 2003. Beralaskan terpal, ia berjualan di acara-acara musik punk di Jakarta. Terkadang, ia juga berjualan ke acara musik punk di luar kota seperti Malang atau Surabaya. Pada masa itu, ia tidur dan mengamen di jalanan dalam menjalani hidup.\r\n\r\nSetelah masa-masa hidup di jalanan, Gofar bekerja sebagai karyawan swasta di perusahaan yang merupakan mitra bisnis sebuah institusi pemerintah di wilayah Bogor. Pada tahun 2005, ia mendirikan bisnis sendiri di bidang yang sama. Kerja sama yang berlangsung baik dengan institusi tersebut membuat Gofar hampir diangkat menjadi pegawai negeri sipil. Namun, ia memilih untuk mengejar cita-citanya sebagai penyiar radio.",
+    "thumbnail": "articles/C0C64493-7ADD-45DA-AE2F-548C307FF481.png",
+    "is_published": true,
+    "created_at": "2026-11-23T09:29:11.353Z",
+    "updated_at": "2026-11-23T09:29:11.353Z"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2026-11-02T18:09:22.492Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "category"
+    ],
+    "object_id": "1",
+    "object_repr": "Makanan & Sembako",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 2,
+  "fields": {
+    "action_time": "2026-11-02T18:15:01.107Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "product"
+    ],
+    "object_id": "1",
+    "object_repr": "Beras Premium 5 Kg",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 3,
+  "fields": {
+    "action_time": "2026-11-02T18:20:20.367Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "category"
+    ],
+    "object_id": "2",
+    "object_repr": "kendaraan",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 4,
+  "fields": {
+    "action_time": "2026-11-02T18:20:32.384Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "category"
+    ],
+    "object_id": "3",
+    "object_repr": "Elektronik",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 5,
+  "fields": {
+    "action_time": "2026-11-02T18:21:05.852Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "category"
+    ],
+    "object_id": "4",
+    "object_repr": "Pakaian",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 6,
+  "fields": {
+    "action_time": "2026-11-02T18:27:43.089Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "product"
+    ],
+    "object_id": "2",
+    "object_repr": "Kawasaki w175",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 7,
+  "fields": {
+    "action_time": "2026-11-02T18:31:30.035Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "product"
+    ],
+    "object_id": "3",
+    "object_repr": "Toyota Great corolla",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 8,
+  "fields": {
+    "action_time": "2026-11-02T18:32:13.840Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "product"
+    ],
+    "object_id": "2",
+    "object_repr": "Kawasaki w175",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 9,
+  "fields": {
+    "action_time": "2026-11-02T18:36:30.214Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "product"
+    ],
+    "object_id": "4",
+    "object_repr": "celana denim",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 10,
+  "fields": {
+    "action_time": "2026-11-02T18:41:08.513Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "product"
+    ],
+    "object_id": "5",
+    "object_repr": "smart tv LG",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 11,
+  "fields": {
+    "action_time": "2026-11-02T18:43:15.940Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "product"
+    ],
+    "object_id": "6",
+    "object_repr": "Kipas Angin",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 12,
+  "fields": {
+    "action_time": "2026-11-02T18:49:13.408Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "product"
+    ],
+    "object_id": "7",
+    "object_repr": "Hoodie H&M",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 13,
+  "fields": {
+    "action_time": "2026-11-02T18:50:46.950Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "category"
+    ],
+    "object_id": "5",
+    "object_repr": "Hewan Peliharaan",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 14,
+  "fields": {
+    "action_time": "2026-11-02T18:51:12.156Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "category"
+    ],
+    "object_id": "6",
+    "object_repr": "Sparepart Kendaraan",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 15,
+  "fields": {
+    "action_time": "2026-11-02T18:51:36.985Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "category"
+    ],
+    "object_id": "7",
+    "object_repr": "Furniture",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 16,
+  "fields": {
+    "action_time": "2026-11-02T18:51:49.248Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "category"
+    ],
+    "object_id": "8",
+    "object_repr": "Barang Antik",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 17,
+  "fields": {
+    "action_time": "2026-11-02T18:52:14.661Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "category"
+    ],
+    "object_id": "9",
+    "object_repr": "Alas Kaki",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 18,
+  "fields": {
+    "action_time": "2026-11-02T18:53:32.496Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "category"
+    ],
+    "object_id": "10",
+    "object_repr": "Alat Berkebun",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 19,
+  "fields": {
+    "action_time": "2026-11-02T18:54:06.390Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "category"
+    ],
+    "object_id": "11",
+    "object_repr": "perabotan",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 20,
+  "fields": {
+    "action_time": "2026-11-02T18:54:24.894Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "category"
+    ],
+    "object_id": "12",
+    "object_repr": "Properti",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 21,
+  "fields": {
+    "action_time": "2026-11-02T18:54:39.368Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "category"
+    ],
+    "object_id": "13",
+    "object_repr": "Alat Musik",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 22,
+  "fields": {
+    "action_time": "2026-11-02T18:55:32.792Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "category"
+    ],
+    "object_id": "14",
+    "object_repr": "perkakas",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 23,
+  "fields": {
+    "action_time": "2026-11-02T18:58:20.627Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "product"
+    ],
+    "object_id": "8",
+    "object_repr": "Ayam Bangkok",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 24,
+  "fields": {
+    "action_time": "2026-11-02T19:02:15.818Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "product"
+    ],
+    "object_id": "9",
+    "object_repr": "Karbu PE 24",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 25,
+  "fields": {
+    "action_time": "2026-11-02T19:07:01.221Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "product"
+    ],
+    "object_id": "10",
+    "object_repr": "Sofa Set",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 26,
+  "fields": {
+    "action_time": "2026-11-02T19:09:24.399Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "product"
+    ],
+    "object_id": "11",
+    "object_repr": "Teko Antik",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 27,
+  "fields": {
+    "action_time": "2026-11-02T19:09:54.285Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "product"
+    ],
+    "object_id": "11",
+    "object_repr": "Teko Antik",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 28,
+  "fields": {
+    "action_time": "2026-11-02T19:12:17.656Z",
+    "user": [
+      "zefhan27"
+    ],
+    "content_type": [
+      "marketplace",
+      "product"
+    ],
+    "object_id": "12",
+    "object_repr": "Sepatu Docmart",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+}
+]
