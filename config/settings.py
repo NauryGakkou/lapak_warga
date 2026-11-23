@@ -68,23 +68,46 @@ WSGI_APPLICATION = "config.wsgi.application"
 ASGI_APPLICATION = "config.asgi.application"
 
 # Database Configuration
-if os.getenv("DB_ENGINE", "mysql").lower() == "mysql":
+db_url = os.getenv("DATABASE_URL", "").strip()
+if db_url and "..." not in db_url and "contoh" not in db_url and "@" in db_url:
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=db_url,
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
+    }
+elif os.getenv("DB_ENGINE", "").lower() == "mysql":
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.mysql",
             "NAME": os.getenv("DB_NAME", "lapak_warga"),
             "USER": os.getenv("DB_USER", "root"),
-            "PASSWORD": "27092005",
+            "PASSWORD": os.getenv("DB_PASSWORD", "27092005"),
             "HOST": os.getenv("DB_HOST", "127.0.0.1"),
             "PORT": os.getenv("DB_PORT", "3306"),
             "OPTIONS": {"charset": "utf8mb4"},
         }
     }
 else:
+    # SQLite configuration (dengan penanganan khusus environment read-only Vercel)
+    sqlite_path = BASE_DIR / "db.sqlite3"
+    if os.getenv("VERCEL"):
+        # Vercel serverless functions bersifat read-only.
+        # Salin file db.sqlite3 ke /tmp agar dapat dibaca dan ditulisi (read-write) secara normal.
+        tmp_db = Path("/tmp/db.sqlite3")
+        if not tmp_db.exists() and sqlite_path.exists():
+            try:
+                shutil.copy2(sqlite_path, tmp_db)
+            except Exception:
+                pass
+        if tmp_db.exists():
+            sqlite_path = tmp_db
+
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            "NAME": sqlite_path,
         }
     }
 
