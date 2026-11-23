@@ -4,7 +4,12 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "dev-only-change-this-secret-key")
 DEBUG = os.getenv("DEBUG", "True").lower() == "true"
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = [ "lapak-warga-1-drab.vercel.app",
+    "localhost",
+    "127.0.0.1",]
+CSRF_TRUSTED_ORIGINS = [
+    "https://lapak-warga-1-drab.vercel.app",
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
