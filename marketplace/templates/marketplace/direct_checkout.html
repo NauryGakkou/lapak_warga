@@ -1,0 +1,115 @@
+{% extends "marketplace/base.html" %}
+{% block title %}Beli Sekarang | {{ product.name }}{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="listing">
+    <span class="eyebrow">INSTANT CHECKOUT</span>
+    <h1>Beli <em>Sekarang.</em></h1>
+    <p>Selesaikan pembelian langsung tanpa repot.</p>
+  </div>
+
+  <div class="checkout-layout">
+    <div class="checkout-form-col">
+      <div class="dash-panel">
+        <div class="panel-heading" style="margin-bottom:20px;">
+          <h2>1. Data Penerima & Pengiriman</h2>
+          <p>Pastikan informasi alamat dan nomor kontak Anda sudah benar.</p>
+        </div>
+        <form method="post" class="admin-form checkout-form">
+          {% csrf_token %}
+          <input type="hidden" name="quantity" value="{{ quantity }}">
+
+          <div class="form-group">
+            <label for="{{ form.full_name.id_for_label }}">{{ form.full_name.label }}</label>
+            {{ form.full_name }}
+            {% for error in form.full_name.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+          </div>
+
+          <div class="form-group">
+            <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
+            {{ form.phone }}
+            {% for error in form.phone.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+          </div>
+
+          <div class="form-group">
+            <label for="{{ form.shipping_address.id_for_label }}">{{ form.shipping_address.label }}</label>
+            {{ form.shipping_address }}
+            {% for error in form.shipping_address.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+          </div>
+
+          <div class="panel-heading" style="margin: 25px 0 15px;">
+            <h2>2. Pilih Metode Pembayaran</h2>
+            <p>Pilih metode yang paling nyaman bagi Anda.</p>
+          </div>
+
+          <div class="payment-method-grid">
+            {% for radio in form.payment_method %}
+            <label class="payment-card-label" for="{{ radio.id_for_label }}">
+              {{ radio.tag }}
+              <div class="payment-card-content">
+                <span class="payment-card-title">{{ radio.choice_label }}</span>
+              </div>
+            </label>
+            {% endfor %}
+          </div>
+          {% for error in form.payment_method.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+
+          <button type="submit" class="btn btn-primary full-btn" style="margin-top:25px;font-size:15px;padding:16px;">
+            ⚡ Lanjut ke Pembayaran (Rp {{ total|floatformat:0 }})
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="checkout-summary-col">
+      <div class="cart-summary sticky-summary">
+        <h3>Ringkasan Pesanan</h3>
+        
+        <div class="direct-product-card">
+          <div class="direct-product-img">
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" />
+            {% else %}
+            <span>📦</span>
+            {% endif %}
+          </div>
+          <div class="direct-product-info">
+            <b>{{ product.name }}</b>
+            <small>Penjual: {{ product.seller.username }}</small>
+            <div class="direct-price-row">
+              <span>Rp {{ product.price|floatformat:0 }}</span>
+              <span class="qty-badge">× {{ quantity }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="summary-row" style="margin-top:15px;">
+          <span>Harga Satuan</span>
+          <b>Rp {{ product.price|floatformat:0 }}</b>
+        </div>
+        <div class="summary-row">
+          <span>Jumlah Barang</span>
+          <b>{{ quantity }} pcs</b>
+        </div>
+        <div class="summary-row">
+          <span>Ongkos Kirim</span>
+          <b class="text-green">GRATIS (Promo)</b>
+        </div>
+
+        <div class="summary-total">
+          <span>Total Pembayaran</span>
+          <b class="text-green" style="font-size:18px;">Rp {{ total|floatformat:0 }}</b>
+        </div>
+
+        <div class="secure-badge">
+          🛡️ Transaksi aman dengan verifikasi otomatis
+        </div>
+
+        <a href="{% url 'product_detail' product.slug %}" class="btn btn-outline full-btn" style="margin-top:15px;">
+          ← Kembali ke Produk
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

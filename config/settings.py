@@ -1,10 +1,33 @@
 import os
+import shutil
 from pathlib import Path
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = os.getenv("SECRET_KEY", "dev-only-change-this-secret-key")
-DEBUG = os.getenv("DEBUG", "True").lower() == "true"
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "lapak-warga.vercel.app", ".vercel.app"]
+
+SECRET_KEY = os.getenv("SECRET_KEY", "dev-only-change-this-secret-key-lapak-warga")
+DEBUG = True
+
+ALLOWED_HOSTS = [
+    "*",
+    "localhost",
+    "127.0.0.1",
+    ".vercel.app",
+]
+env_hosts = os.getenv("ALLOWED_HOSTS")
+if env_hosts:
+    ALLOWED_HOSTS.extend([h.strip() for h in env_hosts.split(",") if h.strip()])
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.vercel.app",
+    "https://*.now.sh",
+    "https://lapak-warga-roan.vercel.app",
+    "http://127.0.0.1",
+    "http://localhost",
+]
+env_csrf = os.getenv("CSRF_TRUSTED_ORIGINS")
+if env_csrf:
+    CSRF_TRUSTED_ORIGINS.extend([c.strip() for c in env_csrf.split(",") if c.strip()])
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -15,8 +38,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "marketplace",
 ]
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -24,7 +49,9 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
 ROOT_URLCONF = "config.urls"
+
 TEMPLATES = [{
     "BACKEND": "django.template.backends.django.DjangoTemplates",
     "DIRS": [BASE_DIR / "templates"],
@@ -36,24 +63,53 @@ TEMPLATES = [{
         "django.contrib.messages.context_processors.messages",
     ]},
 }]
+
 WSGI_APPLICATION = "config.wsgi.application"
 ASGI_APPLICATION = "config.asgi.application"
 
-if os.getenv("DB_ENGINE", "sqlite").lower() == "mysql":
-    DATABASES = {"default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": os.getenv("DB_NAME", "lapak_warga"),
-        "USER": os.getenv("DB_USER", "root"),
-        "PASSWORD": os.getenv("DB_PASSWORD", ""),
-        "HOST": os.getenv("DB_HOST", "127.0.0.1"),
-        "PORT": os.getenv("DB_PORT", "3306"),
-        "OPTIONS": {"charset": "utf8mb4"},
-    }}
+# Database Configuration
+db_url = os.getenv("DATABASE_URL", "").strip()
+if db_url and "..." not in db_url and "contoh" not in db_url and "@" in db_url:
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=db_url,
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
+    }
+elif os.getenv("DB_ENGINE", "").lower() == "mysql":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": os.getenv("DB_NAME", "lapak_warga"),
+            "USER": os.getenv("DB_USER", "root"),
+            "PASSWORD": os.getenv("DB_PASSWORD", "27092005"),
+            "HOST": os.getenv("DB_HOST", "127.0.0.1"),
+            "PORT": os.getenv("DB_PORT", "3306"),
+            "OPTIONS": {"charset": "utf8mb4"},
+        }
+    }
 else:
-    DATABASES = {"default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }}
+    # SQLite configuration (dengan penanganan khusus environment read-only Vercel)
+    sqlite_path = BASE_DIR / "db.sqlite3"
+    if os.getenv("VERCEL"):
+        # Vercel serverless functions bersifat read-only.
+        # Salin file db.sqlite3 ke /tmp agar dapat dibaca dan ditulisi (read-write) secara normal.
+        tmp_db = Path("/tmp/db.sqlite3")
+        if not tmp_db.exists() and sqlite_path.exists():
+            try:
+                shutil.copy2(sqlite_path, tmp_db)
+            except Exception:
+                pass
+        if tmp_db.exists():
+            sqlite_path = tmp_db
+
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": sqlite_path,
+        }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
@@ -61,14 +117,21 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
+
 LANGUAGE_CODE = "id"
 TIME_ZONE = "Asia/Makassar"
 USE_I18N = True
 USE_TZ = True
-STATIC_URL = "static/"
+
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
-MEDIA_URL = "media/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+WHITENOISE_USE_FINDERS = True
+
+MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "dashboard"

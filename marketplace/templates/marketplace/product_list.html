@@ -1,54 +1,77 @@
-{% extends "marketplace/base.html" %} {% block title %}Katalog Produk | Lapak
-Warga{% endblock %} {% block content %}
-
+{% extends "marketplace/base.html" %}
+{% block title %}Katalog Produk | Lapak Warga{% endblock %}
+{% block content %}
 <section class="section listing">
-  <span class="eyebrow">MARKETPLACE LAPAK WARGA</span>
-
   <div class="section-heading">
     <div>
+      <span class="eyebrow">MARKETPLACE LAPAK WARGA</span>
       <h1>Temukan Produk <em>Warga</em></h1>
-      <p>Belanja dekat, dukung usaha warga.</p>
+      <p>Belanja dekat, dukung usaha dan produk lokal di sekitar Anda.</p>
     </div>
   </div>
 
+  {% if categories %}
+  <div class="category-filters">
+    <a href="{% url 'product_list' %}" class="cat-pill {% if not active_category %}cat-pill-active{% endif %}">Semua</a>
+    {% for cat in categories %}
+    <a href="{% url 'product_list' %}?kategori={{ cat.slug }}" class="cat-pill {% if active_category == cat.slug %}cat-pill-active{% endif %}">
+      {{ cat.name }}
+    </a>
+    {% endfor %}
+  </div>
+  {% endif %}
+
   <div class="product-grid">
     {% for product in products %}
-
     <div class="product-card">
       <a href="{% url 'product_detail' product.slug %}">
         <div class="product-image">
           {% if product.image %}
           <img src="{{ product.image.url }}" alt="{{ product.name }}" />
-          {% else %} 🛍️ {% endif %}
+          {% else %}
+          <span>🛍️</span>
+          {% endif %}
         </div>
       </a>
 
       <div class="product-info">
-        <small> {{ product.category|default:"Umum" }} </small>
+        <div class="product-badge-row">
+          <small class="product-category-tag">{{ product.category|default:"Umum" }}</small>
+          {% if product.stock > 0 %}
+          <span class="stock-pill in-stock">Stok {{ product.stock }}</span>
+          {% else %}
+          <span class="stock-pill out-of-stock">Habis</span>
+          {% endif %}
+        </div>
 
-        <h3>{{ product.name }}</h3>
+        <h3 class="product-title">
+          <a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a>
+        </h3>
 
-        <strong> Rp {{ product.price|floatformat:0 }} </strong>
+        <strong class="product-price">Rp {{ product.price|floatformat:0 }}</strong>
+        <p class="product-seller">Penjual: <b>{{ product.seller.username }}</b></p>
 
-        <p>Penjual: {{ product.seller.username }}</p>
+        <div class="product-card-actions">
+          <a href="{% url 'product_detail' product.slug %}" class="btn btn-outline btn-small action-detail">
+            Detail
+          </a>
 
-        <p>Stok: {{ product.stock }}</p>
-
-        <a
-          href="{% url 'product_detail' product.slug %}"
-          class="btn btn-primary btn-small"
-        >
-          Lihat Detail
-        </a>
+          {% if product.stock > 0 %}
+          <a href="{% url 'buy_now' product.id %}" class="btn btn-primary btn-small action-buy-now">
+            ⚡ Beli Sekarang
+          </a>
+          {% else %}
+          <button class="btn btn-outline btn-small action-buy-now" disabled style="opacity:0.5;cursor:not-allowed;">
+            Habis
+          </button>
+          {% endif %}
+        </div>
       </div>
     </div>
 
     {% empty %}
-
-    <div class="empty-state">Belum ada produk yang tersedia.</div>
-
+    <div class="empty-state">Belum ada produk yang tersedia saat ini.</div>
     {% endfor %}
   </div>
 </section>
-
 {% endblock %}

@@ -1,5 +1,4 @@
-{% extends "marketplace/base.html" %} {% block title %}Dashboard Admin | Lapak
-Warga{% endblock %} {% block content %}
+{% extends "marketplace/base.html" %} {% block title %}Dashboard Admin | Lapak Warga{% endblock %} {% block content %}
 
 <div class="dashboard-wrap">
   <aside class="sidebar">
@@ -9,13 +8,12 @@ Warga{% endblock %} {% block content %}
       <small>Administrator</small>
     </div>
 
-    <a href="{% url 'dashboard' %}" class="side-active"> Dashboard </a>
-
-    <a href="{% url 'product_list' %}"> Katalog Produk </a>
-
-    <a href="/admin/"> Kelola Data </a>
-
-    <a href="{% url 'home' %}"> Kembali ke Beranda </a>
+    <a href="{% url 'dashboard' %}" class="side-active"> 📊 Dashboard </a>
+    <a href="{% url 'admin_product_list' %}"> 🛍️ Kelola Produk </a>
+    <a href="{% url 'admin_article_list' %}"> 📝 Kelola Artikel </a>
+    <a href="{% url 'product_list' %}"> 🔍 Lihat Katalog </a>
+    <a href="/admin/"> ⚙️ Django Admin </a>
+    <a href="{% url 'home' %}"> 🏠 Kembali ke Beranda </a>
   </aside>
 
   <section class="dash-content">
@@ -25,8 +23,6 @@ Warga{% endblock %} {% block content %}
         <h1>Dashboard Admin</h1>
         <p>Selamat datang, {{ user.first_name|default:user.username }}!</p>
       </div>
-
-      <a href="/admin/" class="btn btn-primary"> Kelola Website </a>
     </div>
 
     <div class="stat-grid">
@@ -47,12 +43,32 @@ Warga{% endblock %} {% block content %}
         <b>{{ total_orders }}</b>
         <small>Pesanan yang tercatat</small>
       </div>
+
+      <div class="stat-card">
+        <span>Total Artikel</span>
+        <b>{{ total_articles }}</b>
+        <small>Artikel yang ditulis</small>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="dash-panel" style="margin-bottom:20px;">
+      <div class="panel-heading">
+        <h2>Aksi Cepat</h2>
+        <p>Kelola konten marketplace dengan mudah.</p>
+      </div>
+      <div class="quick-actions">
+        <a href="{% url 'admin_product_add' %}" class="btn btn-primary">+ Tambah Produk</a>
+        <a href="{% url 'admin_article_add' %}" class="btn btn-primary">+ Tulis Artikel</a>
+        <a href="{% url 'admin_product_list' %}" class="btn btn-outline">Kelola Semua Produk</a>
+        <a href="{% url 'admin_article_list' %}" class="btn btn-outline">Kelola Semua Artikel</a>
+      </div>
     </div>
 
     <div class="dash-panel">
       <div class="panel-heading">
         <h2>Produk Terbaru</h2>
-        <p>Daftar lima produk terbaru di Lapak Warga.</p>
+        <p>Lima produk terbaru di Lapak Warga.</p>
       </div>
 
       {% for product in recent_products %}
@@ -68,12 +84,38 @@ Warga{% endblock %} {% block content %}
         </div>
 
         <span class="order-status"> Rp {{ product.price|floatformat:0 }} </span>
+        <a href="{% url 'admin_product_edit' product.pk %}" class="btn-action btn-edit" style="margin-left:10px;">Edit</a>
       </div>
 
       {% empty %}
 
       <div class="empty-state">Belum ada produk yang tersedia.</div>
 
+      {% endfor %}
+    </div>
+
+    <div class="dash-panel">
+      <div class="panel-heading">
+        <h2>Pesanan Terbaru</h2>
+        <p>Lima pesanan terbaru dari pelanggan.</p>
+      </div>
+
+      {% for order in recent_orders %}
+      <div class="order-row">
+        <div class="order-icon">📦</div>
+        <div class="order-detail">
+          <b>Pesanan #{{ order.pk }} — {{ order.user.username }}</b>
+          <small>{{ order.created_at|date:"d M Y, H:i" }} · {{ order.full_name }} · <b>{{ order.get_payment_method_display }}</b></small>
+        </div>
+        {% if order.status == "paid" %}
+        <span class="badge-active" style="background:#d4edda;color:#155724;font-size:11px;">✓ Lunas</span>
+        {% else %}
+        <span class="badge-inactive" style="background:#fff3cd;color:#856404;font-size:11px;">⏳ Menunggu Bayar</span>
+        {% endif %}
+        <b style="margin-left:12px;font-size:13px;">Rp {{ order.total|floatformat:0 }}</b>
+      </div>
+      {% empty %}
+      <div class="empty-state">Belum ada pesanan.</div>
       {% endfor %}
     </div>
   </section>

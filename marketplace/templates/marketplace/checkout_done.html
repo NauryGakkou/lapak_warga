@@ -1,0 +1,78 @@
+{% extends "marketplace/base.html" %}
+{% block title %}Pesanan #{{ order.pk }} | Lapak Warga{% endblock %}
+{% block content %}
+<section class="section" style="text-align:center;padding-top:60px;">
+  {% if order.status == "paid" %}
+  <div class="success-icon">🎉</div>
+  <span class="eyebrow">PEMBAYARAN LUNAS</span>
+  <h1 style="font:800 38px Manrope;letter-spacing:-1px;margin:12px 0;">Terima kasih, <em>{{ order.user.first_name|default:order.user.username }}!</em></h1>
+  <p style="color:var(--muted);max-width:520px;margin:0 auto 30px;">
+    Pembayaran pesanan <b>#{{ order.pk }}</b> sebesar <b>Rp {{ order.total|floatformat:0 }}</b> telah diterima dan diverifikasi. Penjual sedang mempersiapkan pesanan Anda!
+  </p>
+  {% else %}
+  <div class="success-icon">⏳</div>
+  <span class="eyebrow">PESANAN TERCATAT</span>
+  <h1 style="font:800 38px Manrope;letter-spacing:-1px;margin:12px 0;">Pesanan <em>#{{ order.pk }} Berhasil Dibuat!</em></h1>
+  <p style="color:var(--muted);max-width:520px;margin:0 auto 30px;">
+    Pesanan Anda telah dicatat dalam sistem. Silakan selesaikan pembayaran untuk memproses pengiriman.
+  </p>
+  {% endif %}
+
+  <div class="order-done-card">
+    <div class="order-done-row">
+      <span>Nomor Pesanan</span>
+      <b>#{{ order.pk }}</b>
+    </div>
+    <div class="order-done-row">
+      <span>Status Pesanan</span>
+      <span>
+        {% if order.status == "paid" %}
+        <span class="badge-active" style="background:#d4edda;color:#155724;font-size:12px;">✅ Lunas (Dibayar)</span>
+        {% else %}
+        <span class="badge-inactive" style="background:#fff3cd;color:#856404;font-size:12px;">⏳ Menunggu Pembayaran</span>
+        {% endif %}
+      </span>
+    </div>
+    <div class="order-done-row">
+      <span>Metode Pembayaran</span>
+      <b>{{ order.get_payment_method_display }}</b>
+    </div>
+    <div class="order-done-row">
+      <span>Penerima</span>
+      <b>{{ order.full_name }}</b>
+    </div>
+    <div class="order-done-row">
+      <span>Nomor Telepon</span>
+      <b>{{ order.phone|default:"—" }}</b>
+    </div>
+    <div class="order-done-row">
+      <span>Alamat Pengiriman</span>
+      <b style="text-align:right;max-width:260px;">{{ order.shipping_address }}</b>
+    </div>
+    <div class="order-done-row">
+      <span>Total Tagihan</span>
+      <b class="text-green" style="font-size:16px;">Rp {{ order.total|floatformat:0 }}</b>
+    </div>
+    {% if order.paid_at %}
+    <div class="order-done-row">
+      <span>Waktu Pembayaran</span>
+      <small>{{ order.paid_at|date:"d M Y, H:i" }} WIB</small>
+    </div>
+    {% endif %}
+  </div>
+
+  <div style="margin-top:35px;display:flex;gap:15px;justify-content:center;flex-wrap:wrap;">
+    {% if order.status != "paid" %}
+    <a href="{% url 'order_payment' order.pk %}" class="btn btn-primary">
+      💳 Bayar Pesanan Sekarang
+    </a>
+    {% endif %}
+    <a href="{% url 'dashboard' %}" class="btn btn-outline">
+      📋 Lihat di Dashboard
+    </a>
+    <a href="{% url 'product_list' %}" class="btn btn-outline">
+      🛍️ Belanja Lagi
+    </a>
+  </div>
+</section>
+{% endblock %}

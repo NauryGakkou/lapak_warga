@@ -1,0 +1,35 @@
+{% extends "marketplace/base.html" %}
+{% block title %}Artikel | Lapak Warga{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="listing">
+    <span class="eyebrow">BLOG & INFO</span>
+    <h1>Artikel <em>terbaru.</em></h1>
+    <p>Informasi, tips, dan cerita dari komunitas Lapak Warga.</p>
+  </div>
+
+  <div class="article-grid">
+    {% for article in articles %}
+    <article class="article-card">
+      <div class="article-thumb">
+        {% if article.thumbnail %}
+        <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}" />
+        {% else %}
+        <div class="article-thumb-placeholder">📰</div>
+        {% endif %}
+      </div>
+      <div class="article-info">
+        <small class="article-date">{{ article.created_at|date:"d F Y" }} · {{ article.author.username }}</small>
+        <h2><a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a></h2>
+        {% if article.excerpt %}
+        <p>{{ article.excerpt|truncatechars:120 }}</p>
+        {% endif %}
+        <a href="{% url 'article_detail' article.slug %}" class="text-link">Baca selengkapnya →</a>
+      </div>
+    </article>
+    {% empty %}
+    <div class="empty-state">Belum ada artikel yang dipublikasikan.</div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
