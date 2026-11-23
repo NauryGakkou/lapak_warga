@@ -6,21 +6,18 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", "dev-only-change-this-secret-key-lapak-warga")
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = [
-    "*",
     "localhost",
     "127.0.0.1",
-    ".vercel.app",
+    "lapak-warga-roan.vercel.app",
 ]
 env_hosts = os.getenv("ALLOWED_HOSTS")
 if env_hosts:
     ALLOWED_HOSTS.extend([h.strip() for h in env_hosts.split(",") if h.strip()])
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.vercel.app",
-    "https://*.now.sh",
     "https://lapak-warga-roan.vercel.app",
     "http://127.0.0.1",
     "http://localhost",
@@ -68,16 +65,19 @@ WSGI_APPLICATION = "config.wsgi.application"
 ASGI_APPLICATION = "config.asgi.application"
 
 # Database Configuration
+# Database Configuration
 if os.getenv("DB_ENGINE", "mysql").lower() == "mysql":
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.mysql",
             "NAME": os.getenv("DB_NAME", "lapak_warga"),
             "USER": os.getenv("DB_USER", "root"),
-            "PASSWORD": "27092005",
+            "PASSWORD": os.getenv("DB_PASSWORD", ""),
             "HOST": os.getenv("DB_HOST", "127.0.0.1"),
             "PORT": os.getenv("DB_PORT", "3306"),
-            "OPTIONS": {"charset": "utf8mb4"},
+            "OPTIONS": {
+                "charset": "utf8mb4",
+            },
         }
     }
 else:
