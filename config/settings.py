@@ -68,10 +68,11 @@ WSGI_APPLICATION = "config.wsgi.application"
 ASGI_APPLICATION = "config.asgi.application"
 
 # Database Configuration
-if os.getenv("DATABASE_URL"):
+db_url = os.getenv("DATABASE_URL", "").strip()
+if db_url and "..." not in db_url and "contoh" not in db_url and "@" in db_url:
     DATABASES = {
         "default": dj_database_url.config(
-            default=os.getenv("DATABASE_URL"),
+            default=db_url,
             conn_max_age=600,
             conn_health_checks=True,
         )
