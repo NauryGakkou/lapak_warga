@@ -1,0 +1,70 @@
+{% extends "marketplace/base.html" %}
+{% block title %}Kelola Artikel | Admin Lapak Warga{% endblock %}
+{% block content %}
+<div class="dashboard-wrap">
+  <aside class="sidebar">
+    <div class="profile-mini">
+      <div class="profile-avatar">A</div>
+      <b>{{ user.username }}</b>
+      <small>Administrator</small>
+    </div>
+    <a href="{% url 'dashboard' %}">📊 Dashboard</a>
+    <a href="{% url 'admin_product_list' %}">🛍️ Kelola Produk</a>
+    <a href="{% url 'admin_article_list' %}" class="side-active">📝 Kelola Artikel</a>
+    <a href="{% url 'article_list' %}">🔍 Lihat Artikel</a>
+    <a href="{% url 'home' %}">🏠 Kembali ke Beranda</a>
+  </aside>
+
+  <section class="dash-content">
+    <div class="dash-heading">
+      <div>
+        <span class="eyebrow">KELOLA ARTIKEL</span>
+        <h1>Manajemen Artikel</h1>
+        <p>Buat, edit, atau hapus artikel blog marketplace.</p>
+      </div>
+      <a href="{% url 'admin_article_add' %}" class="btn btn-primary">+ Tulis Artikel</a>
+    </div>
+
+    <div class="dash-panel">
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Judul</th>
+              <th>Penulis</th>
+              <th>Status</th>
+              <th>Dibuat</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for article in articles %}
+            <tr>
+              <td>
+                <b>{{ article.title }}</b>
+                {% if article.excerpt %}<br><small class="text-muted">{{ article.excerpt|truncatechars:60 }}</small>{% endif %}
+              </td>
+              <td>{{ article.author.username }}</td>
+              <td>
+                {% if article.is_published %}
+                <span class="badge-active">Dipublikasi</span>
+                {% else %}
+                <span class="badge-inactive">Draft</span>
+                {% endif %}
+              </td>
+              <td><small>{{ article.created_at|date:"d M Y" }}</small></td>
+              <td class="table-actions">
+                <a href="{% url 'admin_article_edit' article.pk %}" class="btn-action btn-edit">Edit</a>
+                <a href="{% url 'admin_article_delete' article.pk %}" class="btn-action btn-del">Hapus</a>
+              </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5" class="table-empty">Belum ada artikel.</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

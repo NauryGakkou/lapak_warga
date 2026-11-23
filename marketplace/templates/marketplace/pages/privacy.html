@@ -1,0 +1,41 @@
+{% extends "marketplace/base.html" %}
+{% block title %}Kebijakan Privasi | Lapak Warga{% endblock %}
+{% block content %}
+<section class="section static-page">
+  <span class="eyebrow">LEGAL</span>
+  <h1>Kebijakan <em>Privasi</em></h1>
+  <p class="page-intro">Terakhir diperbarui: 21 November 2026</p>
+
+  <div class="static-content">
+    <h2>1. Informasi yang Kami Kumpulkan</h2>
+    <p>Lapak Warga mengumpulkan informasi yang Anda berikan secara langsung saat membuat akun, melakukan transaksi, atau menghubungi kami. Informasi ini mencakup nama, alamat email, nomor telepon, dan alamat pengiriman.</p>
+
+    <h2>2. Cara Kami Menggunakan Informasi</h2>
+    <p>Informasi yang Anda berikan digunakan untuk:</p>
+    <ul>
+      <li>Memproses transaksi dan mengirimkan pesanan Anda</li>
+      <li>Mengirimkan pembaruan tentang pesanan atau akun Anda</li>
+      <li>Meningkatkan layanan dan pengalaman pengguna</li>
+      <li>Mematuhi kewajiban hukum yang berlaku</li>
+    </ul>
+
+    <h2>3. Keamanan Data</h2>
+    <p>Kami menerapkan langkah-langkah keamanan teknis dan organisasional yang wajar untuk melindungi data pribadi Anda dari akses tidak sah, penggunaan, atau pengungkapan.</p>
+
+    <h2>4. Berbagi Data dengan Pihak Ketiga</h2>
+    <p>Kami tidak menjual, memperdagangkan, atau mengalihkan informasi pribadi Anda kepada pihak luar tanpa persetujuan Anda, kecuali dalam rangka menyediakan layanan (misalnya, layanan pengiriman).</p>
+
+    <h2>5. Cookie</h2>
+    <p>Lapak Warga menggunakan cookie untuk meningkatkan pengalaman berselancar Anda. Anda dapat mengatur browser Anda untuk menolak cookie, namun beberapa fitur platform mungkin tidak berfungsi dengan optimal.</p>
+
+    <h2>6. Hak Pengguna</h2>
+    <p>Anda berhak untuk mengakses, memperbarui, atau menghapus informasi pribadi Anda. Hubungi kami melalui halaman <a href="{% url 'contact' %}">Kontak</a> untuk mengajukan permintaan tersebut.</p>
+
+    <h2>7. Perubahan Kebijakan</h2>
+    <p>Kami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu. Perubahan akan diberitahukan melalui halaman ini atau email terdaftar Anda.</p>
+
+    <h2>8. Hubungi Kami</h2>
+    <p>Jika Anda memiliki pertanyaan tentang kebijakan privasi ini, silakan <a href="{% url 'contact' %}">hubungi kami</a>.</p>
+  </div>
+</section>
+{% endblock %}

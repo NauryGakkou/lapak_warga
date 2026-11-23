@@ -1,0 +1,39 @@
+{% extends "marketplace/base.html" %}
+{% block title %}{{ article.title }} | Lapak Warga{% endblock %}
+{% block content %}
+<section class="section">
+  <div style="margin-bottom: 20px;">
+    <a href="{% url 'article_list' %}" class="text-link">← Kembali ke Artikel</a>
+  </div>
+
+  <article class="article-detail">
+    {% if article.thumbnail %}
+    <div class="article-detail-thumb">
+      <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}" />
+    </div>
+    {% endif %}
+
+    <div class="article-detail-header">
+      <span class="eyebrow">ARTIKEL</span>
+      <h1>{{ article.title }}</h1>
+      <div class="article-meta">
+        <span>✍️ {{ article.author.get_full_name|default:article.author.username }}</span>
+        <span>📅 {{ article.created_at|date:"d F Y" }}</span>
+        {% if article.updated_at != article.created_at %}
+        <span>🔄 Diperbarui {{ article.updated_at|date:"d F Y" }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if article.excerpt %}
+    <div class="article-excerpt">
+      <p>{{ article.excerpt }}</p>
+    </div>
+    {% endif %}
+
+    <div class="article-body">
+      {{ article.content|linebreaks }}
+    </div>
+  </article>
+</section>
+{% endblock %}

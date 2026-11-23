@@ -1,8 +1,9 @@
-{% extends "marketplace/base.html" %} {% block title %} {{ product.name }} |
-Lapak Warga {% endblock %} {% block content %}
+{% extends "marketplace/base.html" %}
+{% block title %}{{ product.name }} | Lapak Warga{% endblock %}
+{% block content %}
 <section class="section">
   <div style="margin-bottom: 25px">
-    <a href="{% url 'product_list' %}"> ← Kembali ke Katalog </a>
+    <a href="{% url 'product_list' %}" class="text-link">← Kembali ke Katalog</a>
   </div>
 
   <div class="detail-layout">
@@ -21,21 +22,73 @@ Lapak Warga {% endblock %} {% block content %}
 
       <h1>{{ product.name }}</h1>
 
-      <h2>Rp {{ product.price|floatformat:0 }}</h2>
+      <h2 class="detail-price">Rp {{ product.price|floatformat:0 }}</h2>
 
-      <p>{{ product.description|default:"Belum ada deskripsi produk." }}</p>
+      <p class="detail-desc">{{ product.description|default:"Belum ada deskripsi produk." }}</p>
 
       <div class="detail-meta">
         <p>Penjual: <b>{{ product.seller.username }}</b></p>
-        <p>Stok tersedia: <b>{{ product.stock }}</b></p>
+        <p>Stok tersedia: <b>{{ product.stock }} pcs</b></p>
       </div>
 
       {% if product.stock > 0 %}
-      <span class="badge-stock">Produk tersedia</span>
+      <span class="badge-stock">✓ Produk Tersedia</span>
+
+      {% if user.is_authenticated %}
+      <form method="post" action="{% url 'cart_add' product.pk %}" class="purchase-action-form">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}" />
+        
+        <div class="qty-row" style="margin: 20px 0 15px;">
+          <label for="qty" style="font-weight:700;font-size:13px;">Jumlah:</label>
+          <div class="detail-qty-control">
+            <button type="button" class="btn-qty-minus" onclick="changeQty(-1)">−</button>
+            <input type="number" id="qty" name="quantity" value="1" min="1" max="{{ product.stock }}" class="qty-input-detail" />
+            <button type="button" class="btn-qty-plus" onclick="changeQty(1)">+</button>
+          </div>
+          <small class="text-muted">(Maks. {{ product.stock }} pcs)</small>
+        </div>
+
+        <div class="detail-buttons-row">
+          <!-- Tombol Beli Sekarang (Direct Checkout) -->
+          <button type="submit" formaction="{% url 'buy_now' product.id %}" class="btn btn-buy-now">
+            ⚡ Beli Sekarang
+          </button>
+
+          <!-- Tombol Tambah ke Keranjang -->
+          <button type="submit" class="btn btn-outline btn-add-cart">
+            🛒 + Keranjang
+          </button>
+        </div>
+      </form>
       {% else %}
-      <span class="badge-empty">Stok habis</span>
+      <div class="auth-prompt-box" style="margin-top:20px;">
+        <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Silakan masuk ke akun Anda untuk langsung membeli atau memasukkan ke keranjang.</p>
+        <div style="display:flex;gap:10px;">
+          <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-primary full-btn">Masuk untuk Membeli</a>
+          <a href="{% url 'register' %}" class="btn btn-outline">Daftar</a>
+        </div>
+      </div>
+      {% endif %}
+
+      {% else %}
+      <span class="badge-empty">Stok Habis</span>
+      <p class="text-muted" style="margin-top:10px;font-size:13px;">Maaf, produk ini sedang tidak tersedia untuk sementara waktu.</p>
       {% endif %}
     </div>
   </div>
 </section>
+
+<script>
+function changeQty(delta) {
+  const input = document.getElementById("qty");
+  if (!input) return;
+  let val = parseInt(input.value) || 1;
+  const max = parseInt(input.getAttribute("max")) || 999;
+  val += delta;
+  if (val < 1) val = 1;
+  if (val > max) val = max;
+  input.value = val;
+}
+</script>
 {% endblock %}

@@ -1,0 +1,29 @@
+{% extends "marketplace/base.html" %}
+{% block title %}Hapus Artikel | Admin{% endblock %}
+{% block content %}
+<div class="dashboard-wrap">
+  <aside class="sidebar">
+    <div class="profile-mini">
+      <div class="profile-avatar">A</div>
+      <b>{{ user.username }}</b>
+      <small>Administrator</small>
+    </div>
+    <a href="{% url 'dashboard' %}">📊 Dashboard</a>
+    <a href="{% url 'admin_product_list' %}">🛍️ Kelola Produk</a>
+    <a href="{% url 'admin_article_list' %}" class="side-active">📝 Kelola Artikel</a>
+    <a href="{% url 'home' %}">🏠 Kembali ke Beranda</a>
+  </aside>
+  <section class="dash-content">
+    <div class="confirm-delete-box">
+      <div class="confirm-icon">🗑️</div>
+      <h2>Hapus Artikel?</h2>
+      <p>Anda akan menghapus artikel <b>"{{ article.title }}"</b>. Tindakan ini tidak bisa dibatalkan.</p>
+      <form method="post" class="confirm-actions">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Ya, Hapus Artikel</button>
+        <a href="{% url 'admin_article_list' %}" class="btn btn-outline">Batal</a>
+      </form>
+    </div>
+  </section>
+</div>
+{% endblock %}

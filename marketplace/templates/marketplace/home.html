@@ -55,22 +55,71 @@ Komunitas{% endblock %} {% block content %}
   <div class="product-grid">
     {% for product in products %}
     <article class="product-card">
-      <div class="product-image">
-        {% if product.image %}<img
-          src="{{ product.image.url }}"
-          alt="{{ product.name }}"
-        />{% else %}<span>📦</span>{% endif %}
-      </div>
+      <a href="{% url 'product_detail' product.slug %}">
+        <div class="product-image">
+          {% if product.image %}<img
+            src="{{ product.image.url }}"
+            alt="{{ product.name }}"
+          />{% else %}<span>📦</span>{% endif %}
+        </div>
+      </a>
       <div class="product-info">
-        <small>{{ product.category|default:"Produk warga" }}</small>
-        <h3>{{ product.name }}</h3>
-        <strong>Rp {{ product.price|floatformat:0 }}</strong>
-        <p>Oleh {{ product.seller.username }}</p>
+        <div class="product-badge-row">
+          <small class="product-category-tag">{{ product.category|default:"Produk warga" }}</small>
+          {% if product.stock > 0 %}
+          <span class="stock-pill in-stock">Stok {{ product.stock }}</span>
+          {% else %}
+          <span class="stock-pill out-of-stock">Habis</span>
+          {% endif %}
+        </div>
+        <h3 class="product-title"><a href="{% url 'product_detail' product.slug %}">{{ product.name }}</a></h3>
+        <strong class="product-price">Rp {{ product.price|floatformat:0 }}</strong>
+        <p class="product-seller">Oleh {{ product.seller.username }}</p>
+
+        <div class="product-card-actions">
+          <a href="{% url 'product_detail' product.slug %}" class="btn btn-outline btn-small action-detail">Detail</a>
+          {% if product.stock > 0 %}
+          <a href="{% url 'buy_now' product.id %}" class="btn btn-primary btn-small action-buy-now">⚡ Beli Sekarang</a>
+          {% else %}
+          <button class="btn btn-outline btn-small" disabled style="opacity:0.5;">Habis</button>
+          {% endif %}
+        </div>
       </div>
     </article>
     {% empty %}
-    <div class="empty-state">login terlebih dahulu.</div>
+    <div class="empty-state">Belum ada produk tersedia.</div>
     {% endfor %}
   </div>
 </section>
+
+{% if articles %}
+<section class="section">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">BLOG & INFO</span>
+      <h2>Artikel <em>terbaru.</em></h2>
+    </div>
+    <a class="text-link" href="{% url 'article_list' %}">Lihat semua →</a>
+  </div>
+  <div class="article-grid">
+    {% for article in articles %}
+    <article class="article-card">
+      <div class="article-thumb">
+        {% if article.thumbnail %}
+        <img src="{{ article.thumbnail.url }}" alt="{{ article.title }}" />
+        {% else %}
+        <div class="article-thumb-placeholder">📰</div>
+        {% endif %}
+      </div>
+      <div class="article-info">
+        <small class="article-date">{{ article.created_at|date:"d F Y" }}</small>
+        <h2><a href="{% url 'article_detail' article.slug %}">{{ article.title }}</a></h2>
+        {% if article.excerpt %}<p>{{ article.excerpt|truncatechars:100 }}</p>{% endif %}
+        <a href="{% url 'article_detail' article.slug %}" class="text-link">Baca →</a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
 {% endblock %}

@@ -1,0 +1,53 @@
+{% extends "marketplace/base.html" %}
+{% block title %}{{ action }} Produk | Admin Lapak Warga{% endblock %}
+{% block content %}
+<div class="dashboard-wrap">
+  <aside class="sidebar">
+    <div class="profile-mini">
+      <div class="profile-avatar">A</div>
+      <b>{{ user.username }}</b>
+      <small>Administrator</small>
+    </div>
+    <a href="{% url 'dashboard' %}">📊 Dashboard</a>
+    <a href="{% url 'admin_product_list' %}" class="side-active">🛍️ Kelola Produk</a>
+    <a href="{% url 'admin_article_list' %}">📝 Kelola Artikel</a>
+    <a href="{% url 'product_list' %}">🔍 Lihat Katalog</a>
+    <a href="{% url 'home' %}">🏠 Kembali ke Beranda</a>
+  </aside>
+
+  <section class="dash-content">
+    <div class="dash-heading">
+      <div>
+        <span class="eyebrow">ADMIN PANEL</span>
+        <h1>{{ action }} Produk</h1>
+        <p>{% if action == "Edit" %}Perbarui informasi produk.{% else %}Tambahkan produk baru ke marketplace.{% endif %}</p>
+      </div>
+      <a href="{% url 'admin_product_list' %}" class="btn btn-outline">← Kembali</a>
+    </div>
+
+    <div class="dash-panel">
+      <form method="post" enctype="multipart/form-data" class="admin-form">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% if field.help_text %}<small class="help-text">{{ field.help_text }}</small>{% endif %}
+          {% for error in field.errors %}<span class="field-error">{{ error }}</span>{% endfor %}
+        </div>
+        {% endfor %}
+        {% if product and product.image %}
+        <div class="form-group">
+          <label>Foto Saat Ini</label>
+          <img src="{{ product.image.url }}" alt="Foto produk" class="preview-img" />
+        </div>
+        {% endif %}
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">💾 Simpan Produk</button>
+          <a href="{% url 'admin_product_list' %}" class="btn btn-outline">Batal</a>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+{% endblock %}

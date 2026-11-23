@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils.text import slugify
+from django.utils import timezone
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -72,12 +73,22 @@ class Order(models.Model):
         ("completed", "Selesai"),
         ("cancelled", "Dibatalkan"),
     ]
+    PAYMENT_CHOICES = [
+        ("qris", "QRIS (GoPay, OVO, Dana, ShopeePay, BCA)"),
+        ("bca_va", "BCA Virtual Account"),
+        ("bri_va", "BRI Virtual Account"),
+        ("mandiri_va", "Mandiri Virtual Account"),
+        ("cod", "COD (Bayar di Tempat)"),
+    ]
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name="orders")
     full_name = models.CharField(max_length=150)
     phone = models.CharField(max_length=30, blank=True)
     shipping_address = models.TextField()
+    payment_method = models.CharField(max_length=30, choices=PAYMENT_CHOICES, default="qris")
     total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="pending")
+    payment_proof = models.ImageField(upload_to="payments/", blank=True, null=True)
+    paid_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -96,3 +107,33 @@ class OrderItem(models.Model):
     @property
     def subtotal(self):
         return self.price * self.quantity
+
+
+class Article(models.Model):
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="articles"
+    )
+    title = models.CharField(max_length=250)
+    slug = models.SlugField(max_length=270, unique=True, blank=True)
+    excerpt = models.TextField(max_length=500, blank=True, help_text="Ringkasan singkat artikel")
+    content = models.TextField()
+    thumbnail = models.ImageField(upload_to="articles/", blank=True, null=True)
+    is_published = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base = slugify(self.title) or "artikel"
+            candidate, counter = base, 1
+            while Article.objects.filter(slug=candidate).exclude(pk=self.pk).exists():
+                counter += 1
+                candidate = f"{base}-{counter}"
+            self.slug = candidate
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title

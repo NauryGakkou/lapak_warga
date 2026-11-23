@@ -1,0 +1,78 @@
+{% extends "marketplace/base.html" %}
+{% block title %}Keranjang Belanja | Lapak Warga{% endblock %}
+{% block content %}
+<section class="section">
+  <div class="listing">
+    <span class="eyebrow">KERANJANG</span>
+    <h1>Keranjang <em>belanjamu.</em></h1>
+  </div>
+
+  {% if items %}
+  <div class="cart-layout">
+    <div class="cart-items">
+      {% for item in items %}
+      <div class="cart-row">
+        <div class="cart-item-img">
+          {% if item.product.image %}
+          <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" />
+          {% else %}
+          <span>📦</span>
+          {% endif %}
+        </div>
+        <div class="cart-item-info">
+          <a href="{% url 'product_detail' item.product.slug %}"><b>{{ item.product.name }}</b></a>
+          <small>{{ item.product.category|default:"Produk warga" }}</small>
+          <p class="cart-price">Rp {{ item.product.price|floatformat:0 }}</p>
+        </div>
+        <div class="cart-item-qty">
+          <form method="post" action="{% url 'cart_update' item.pk %}">
+            {% csrf_token %}
+            <div class="qty-control">
+              <button type="submit" name="quantity" value="{{ item.quantity|add:'-1' }}" class="qty-btn">−</button>
+              <span class="qty-num">{{ item.quantity }}</span>
+              <button type="submit" name="quantity" value="{{ item.quantity|add:'1' }}" class="qty-btn">+</button>
+            </div>
+          </form>
+        </div>
+        <div class="cart-item-subtotal">
+          <b>Rp {{ item.subtotal|floatformat:0 }}</b>
+        </div>
+        <div class="cart-item-remove">
+          <form method="post" action="{% url 'cart_remove' item.pk %}">
+            {% csrf_token %}
+            <button type="submit" class="remove-btn" title="Hapus">✕</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="cart-summary">
+      <h3>Ringkasan Pesanan</h3>
+      <div class="summary-row">
+        <span>Subtotal ({{ items|length }} produk)</span>
+        <b>Rp {{ total|floatformat:0 }}</b>
+      </div>
+      <div class="summary-row">
+        <span>Ongkos Kirim</span>
+        <span class="text-muted">Dihitung saat checkout</span>
+      </div>
+      <div class="summary-total">
+        <span>Total</span>
+        <b>Rp {{ total|floatformat:0 }}</b>
+      </div>
+      <a href="{% url 'checkout' %}" class="btn btn-primary full-btn">Lanjut ke Checkout →</a>
+      <a href="{% url 'product_list' %}" class="btn btn-outline full-btn" style="margin-top:10px;">Lanjut Belanja</a>
+    </div>
+  </div>
+
+  {% else %}
+  <div class="cart-empty">
+    <div class="cart-empty-icon">🛒</div>
+    <h3>Keranjang masih kosong</h3>
+    <p>Yuk, mulai temukan produk favorit dari komunitas!</p>
+    <a href="{% url 'product_list' %}" class="btn btn-primary">Jelajahi Produk</a>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}
